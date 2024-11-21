@@ -26,5 +26,6 @@ export default {
     L: 18,
     XL: 24,
     XXL: 32,
-  }
+  },
+  BORDERRADIUS: 6,
 };
