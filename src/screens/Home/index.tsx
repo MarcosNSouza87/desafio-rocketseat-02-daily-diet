@@ -39,14 +39,26 @@ export function Home({}: IHome) {
 	]);
 	const navigation = useNavigation();
 
+	function ShowItem(item: any) {
+		navigation.navigate('mealShow', {
+			title: 'Sanduíche',
+			description: 'Sanduíche de pão integral com atum e salada de alface e tomate',
+			date: '10/10/2024',
+			hour: '12:12',
+			statusMeal: true,
+		});
+	}
+
 	return (
 		<S.Container>
 			<S.Header>
 				<LogoIcon />
 				<S.Avatar />
 			</S.Header>
-			<CardDiet title={statusDiet} subtitle="das refeicoes dentro da dieta" 
-				onPress={() => navigation.navigate('statistic',{statusDiet})}
+			<CardDiet
+				title={statusDiet}
+				subtitle="das refeicoes dentro da dieta"
+				onPress={() => navigation.navigate('statistic', { statusDiet })}
 			/>
 			<S.Text>Refeições</S.Text>
 			<Button title="Nova refeição" type="PRIMARY" icon="Plus" />
@@ -55,7 +67,12 @@ export function Home({}: IHome) {
 				sections={data}
 				keyExtractor={(item, index) => item + index}
 				renderItem={({ item }) => (
-					<CardMeal hour={item.hour} title={item.title} status={item.status} />
+					<CardMeal
+						hour={item.hour}
+						title={item.title}
+						status={item.status}
+						onPress={() => ShowItem(item)}
+					/>
 				)}
 				renderSectionHeader={({ section: { title } }) => (
 					<S.TitleList>{title}</S.TitleList>

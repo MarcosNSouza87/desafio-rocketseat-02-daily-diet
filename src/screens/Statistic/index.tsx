@@ -8,8 +8,8 @@ type RouteParams = {
 };
 export function Statistic({}: IStatistic) {
 	const route = useRoute();
-  const navigation = useNavigation();
 	const { statusDiet } = route.params as RouteParams;
+  const navigation = useNavigation();
 	const status = statusDiet > 70 ? true : false;
 	return (
 		<S.Container>
