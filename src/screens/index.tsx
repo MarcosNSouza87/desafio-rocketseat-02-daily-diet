@@ -1,3 +1,4 @@
 import { Home } from './Home';
+import { Statistic } from './Statistic';
 
-export { Home };
+export { Home, Statistic };

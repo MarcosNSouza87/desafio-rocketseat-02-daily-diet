@@ -2,11 +2,15 @@ import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { ArrowUpRight } from 'phosphor-react-native';
 
+type IContainer = {
+  status: boolean;
+}
 
-export const Container = styled(TouchableOpacity)`
+
+export const Container = styled(TouchableOpacity)<IContainer>`
   width: 100%;
   height: 102px;
-  background-color: ${({theme}) => theme.COLORS.GREEN.LIGHT};
+  background-color: ${({theme, status}) => status ? theme.COLORS.GREEN.LIGHT :  theme.COLORS.RED.LIGHT };
   justify-content: center;
   border-radius: ${({theme}) => theme.BORDERRADIUS}px;
   margin-bottom: 20px;
@@ -27,11 +31,11 @@ export const SubTitle = styled.Text`
   color: ${({ theme }) => theme.COLORS.GRAY_2};
 `;
 
-export const Icon = styled(ArrowUpRight).attrs(({theme})=>({
+export const Icon = styled(ArrowUpRight).attrs<IContainer>(({theme, status})=>({
   size: 32,
-  color: theme.COLORS.GREEN.DARK,
+  color: status ? theme.COLORS.GREEN.DARK : theme.COLORS.RED.DARK,
 }))`
   position: absolute;
-  top: 4 ;
-  right: 4;
+  top: 4px ;
+  right: 4px;
 `;

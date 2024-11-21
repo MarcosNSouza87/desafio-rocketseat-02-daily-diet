@@ -5,11 +5,21 @@ import LogoIcon from '@assets/logo';
 import { CardDiet } from '@components/CardDiet';
 import { Button } from '@components/Button';
 import { CardMeal } from '@components/CardMeal';
+import { useNavigation } from '@react-navigation/native';
 
 interface IHome {}
 
 export function Home({}: IHome) {
+	const [statusDiet, setStatusDiet] = useState<number>(90.67);
 	const [data, setData] = useState<any>([
+		{
+			title: '12.12.2024',
+			data: [
+				{ hour: '12:12', title: 'X-tudo', status: false },
+				{ hour: '12:11', title: 'X-tudo', status: true },
+				{ hour: '12:10', title: 'X-tudo', status: false },
+			],
+		},
 		{
 			title: '12.12.2024',
 			data: [
@@ -27,6 +37,7 @@ export function Home({}: IHome) {
 			data: [{ hour: '12:12', title: 'X-tudo', status: false }],
 		},
 	]);
+	const navigation = useNavigation();
 
 	return (
 		<S.Container>
@@ -34,10 +45,13 @@ export function Home({}: IHome) {
 				<LogoIcon />
 				<S.Avatar />
 			</S.Header>
-			<CardDiet title="90,02%" subtitle="das refeicoes dentro da dieta" />
+			<CardDiet title={statusDiet} subtitle="das refeicoes dentro da dieta" 
+				onPress={() => navigation.navigate('statistic',{statusDiet})}
+			/>
 			<S.Text>Refeições</S.Text>
 			<Button title="Nova refeição" type="PRIMARY" icon="Plus" />
 			<SectionList
+				showsVerticalScrollIndicator={false}
 				sections={data}
 				keyExtractor={(item, index) => item + index}
 				renderItem={({ item }) => (
