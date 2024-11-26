@@ -14,6 +14,9 @@ export declare global {
 			};
       mealCreate: undefined;
       mealEdit: undefined;
+			feedback: {
+				status: boolean;
+			}
 		}
 	}
 }

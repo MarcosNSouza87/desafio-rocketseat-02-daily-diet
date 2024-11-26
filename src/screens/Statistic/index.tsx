@@ -9,7 +9,7 @@ type RouteParams = {
 export function Statistic({}: IStatistic) {
 	const route = useRoute();
 	const { statusDiet } = route.params as RouteParams;
-  const navigation = useNavigation();
+  const { navigate } = useNavigation()
 	const status = statusDiet > 70 ? true : false;
 	return (
 		<S.Container>
@@ -18,7 +18,7 @@ export function Statistic({}: IStatistic) {
 				<S.SubTitle>{`das refeições ${
 					statusDiet ? 'dentro' : 'fora'
 				} da dieta`}</S.SubTitle>
-				<S.ButtonIcon onPress={() => navigation.navigate('home')}>
+				<S.ButtonIcon onPress={() => navigate('home')}>
 					<S.Icon status={status} />
 				</S.ButtonIcon>
 			</S.Header>

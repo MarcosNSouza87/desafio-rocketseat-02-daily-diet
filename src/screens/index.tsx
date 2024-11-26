@@ -1,6 +1,7 @@
 import { Home } from './Home';
 import { Statistic } from './Statistic';
 import { MealShow } from './MealShow';
-import { MealCreate } from './MealCreate';
+import { MealCreateEdit } from './MealCreateEdit';
+import { Feedback } from './Feedback';
 
-export { Home, Statistic, MealShow, MealCreate };
+export { Home, Statistic, MealShow, MealCreateEdit,Feedback };

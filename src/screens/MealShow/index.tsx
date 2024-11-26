@@ -12,13 +12,12 @@ type RouteParams = {
 
 export function MealShow() {
 	const route = useRoute();
-	const navigation = useNavigation();
 	const { statusMeal, title, description, hour, date } = route.params as RouteParams;
-
+	const { navigate } = useNavigation();
 	return (
 		<S.Container>
 			<S.Header status={statusMeal}>
-				<S.ButtonIcon onPress={() => navigation.navigate('home')}>
+				<S.ButtonIcon onPress={() => navigate('home')}>
 					<S.Icon status={statusMeal} />
 				</S.ButtonIcon>
 				<S.Title>Refeição</S.Title>

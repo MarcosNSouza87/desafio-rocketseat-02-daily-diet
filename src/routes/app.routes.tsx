@@ -18,7 +18,13 @@ export function AppRoutes(){
         component={Scrn.MealShow}
       />
       <NStck.Screen name="mealEdit" 
-        component={Scrn.MealCreate}
+        component={Scrn.MealCreateEdit}
+      />
+      <NStck.Screen name="mealCreate" 
+        component={Scrn.MealCreateEdit}
+      />
+      <NStck.Screen name="feedback" 
+        component={Scrn.Feedback}
       />
 
     </NStck.Navigator>
