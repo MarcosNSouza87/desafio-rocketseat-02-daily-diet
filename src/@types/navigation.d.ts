@@ -1,3 +1,5 @@
+import { IForm } from "./form";
+
 export declare global {
 	namespace ReactNavigation {
 		interface RootParamList {
@@ -5,15 +7,9 @@ export declare global {
 			statistic: {
 				statusDiet: number;
 			};
-			mealShow: {
-				statusMeal: boolean;
-				title: string;
-				description: string;
-				hour: string;
-				date: string;
-			};
+			mealShow: {edit: IForm};
       mealCreate: undefined;
-      mealEdit: undefined;
+      mealEdit: {edit:IForm};
 			feedback: {
 				status: boolean;
 			}
