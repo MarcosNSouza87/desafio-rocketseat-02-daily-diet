@@ -48,6 +48,16 @@ export const ButtonChoise = styled(TouchableOpacity)<Props>`
 	flex-direction: row;
 `;
 
+export const ButtonChoiseNot = styled(ButtonChoise)`
+	background-color: ${({ theme, active }) =>
+		active ? theme.COLORS.RED.LIGHT : theme.COLORS.GRAY_6};
+	border-radius: ${({ theme }) => theme.BORDERRADIUS}px;
+	border: 1px solid
+		${({ theme, active }) =>
+			active ? theme.COLORS.RED.DARK : theme.COLORS.GRAY_4};
+`
+
+
 export const ButtonChoiseText = styled.Text`
 	font-size: ${({ theme }) => theme.FONT_SIZE.M}px;
 	font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};

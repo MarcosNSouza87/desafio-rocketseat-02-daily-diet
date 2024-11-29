@@ -121,7 +121,7 @@ export function MealCreateEdit({}: IMealCreate) {
 						</S.ButtonChoise>
 					</S.InputContent>
 					<S.InputContent>
-						<S.ButtonChoise
+						<S.ButtonChoiseNot
 							onPress={() => {
 								setDietOk('2');
 								handleInputChange('isDiet', false);
@@ -129,7 +129,7 @@ export function MealCreateEdit({}: IMealCreate) {
 							active={dietOk === '2' ? true : false}
 						>
 							<S.ButtonChoiseText>Não</S.ButtonChoiseText>
-						</S.ButtonChoise>
+						</S.ButtonChoiseNot>
 					</S.InputContent>
 				</S.Row>
 				<Button
