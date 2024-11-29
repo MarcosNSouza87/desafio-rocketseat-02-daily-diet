@@ -3,6 +3,7 @@ import * as S from './styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Button } from '@components/Button';
 import { IForm } from 'src/@types/form';
+import { mealRemove } from '@storage/meal/mealRemove';
 type RouteParams = {
 	edit: IForm;
 };
@@ -10,11 +11,16 @@ type RouteParams = {
 export function MealShow() {
 	const route = useRoute();
 	const { edit } = route.params as RouteParams;
-	const { isDiet, name, description, hour, date } = edit;
+	const { isDiet, name, description, hour, date,id } = edit;
 	const { navigate } = useNavigation();
 
 	const handleEdit = () => {
 		navigate("mealEdit", {edit})
+	}
+
+	async function handleRemove () {
+		await mealRemove(id);
+		navigate("home");
 	}
 
 	return (
@@ -45,6 +51,7 @@ export function MealShow() {
 					style={{
 						marginTop: 12,
 					}}
+					onPress={handleRemove}
 				/>
 			</S.Content>
 		</S.Container>

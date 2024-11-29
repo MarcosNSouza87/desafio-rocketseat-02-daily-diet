@@ -22,7 +22,7 @@ export const Status = styled.View<IStatus>`
 `;
 
 export const HourText = styled.Text`
-	width: 50px;
+
 	font-size: ${({ theme }) => theme.FONT_SIZE.S}px;
 	font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
   padding-right: 10px;

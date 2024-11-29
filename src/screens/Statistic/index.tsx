@@ -1,22 +1,27 @@
 import React from 'react';
 import * as S from './styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
-interface IStatistic {}
+export interface IStatistic {
+	percent: number,
+	totalMealRegistred: number,
+	mealOk: number,
+	mealNotOk: number
+}
 
 type RouteParams = {
-	statusDiet: number;
+	statisticDiet: IStatistic
 };
-export function Statistic({}: IStatistic) {
+export function Statistic() {
 	const route = useRoute();
-	const { statusDiet } = route.params as RouteParams;
+	const { statisticDiet } = route.params as RouteParams;
   const { navigate } = useNavigation()
-	const status = statusDiet > 70 ? true : false;
+	const status = statisticDiet.percent > 70 ? true : false;
 	return (
 		<S.Container>
 			<S.Header status={status}>
-				<S.Title>{`${statusDiet.toFixed(2).replace('.', ',')}%`}</S.Title>
+				<S.Title>{`${statisticDiet.percent.toFixed(2).replace('.', ',')}%`}</S.Title>
 				<S.SubTitle>{`das refeições ${
-					statusDiet ? 'dentro' : 'fora'
+					statisticDiet ? 'dentro' : 'fora'
 				} da dieta`}</S.SubTitle>
 				<S.ButtonIcon onPress={() => navigate('home')}>
 					<S.Icon status={status} />
@@ -29,18 +34,18 @@ export function Statistic({}: IStatistic) {
 					<S.CardSubtitle>melhor sequencia de pratos dentro da dieta</S.CardSubtitle>
 				</S.ContentCard>
 				<S.ContentCard type="normal">
-					<S.CardTitle>122</S.CardTitle>
+					<S.CardTitle>{statisticDiet.totalMealRegistred}</S.CardTitle>
 					<S.CardSubtitle>refeições registradas</S.CardSubtitle>
 				</S.ContentCard>
 				<S.Row>
 					<S.ContentCardRow type="green">
-						<S.CardTitle>99</S.CardTitle>
+						<S.CardTitle>{statisticDiet.mealOk}</S.CardTitle>
 						<S.CardSubtitle>
             refeições dentro da dieta
 						</S.CardSubtitle>
 					</S.ContentCardRow>
 					<S.ContentCardRow type="red">
-						<S.CardTitle>10</S.CardTitle>
+						<S.CardTitle>{statisticDiet.mealNotOk}</S.CardTitle>
 						<S.CardSubtitle>
             refeições fora da dieta
 						</S.CardSubtitle>

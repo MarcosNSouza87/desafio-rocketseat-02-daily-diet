@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import { MealHeader } from '@components/MealHeader';
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { IForm } from 'src/@types/form';
+import { mealCreate } from '@storage/meal/mealCreate';
+import { mealUpdate } from '@storage/meal/mealUpdate';
 interface IMealCreate {}
-
-interface IForm {
-	name: string;
-	description: string;
-	date: string;
-	hour: string;
-	isDiet: boolean;
-}
 
 type RouteParams = {
 	edit?: IForm;
@@ -20,15 +15,16 @@ type RouteParams = {
 
 export function MealCreateEdit({}: IMealCreate) {
 	const route = useRoute();
-	const { edit } = route.params as RouteParams ?? {};
+	const { edit } = (route.params as RouteParams) ?? {};
 	const [form, setForm] = useState<IForm>({
-    name: edit?.name || '',
+		id: edit?.id || '',
+		name: edit?.name || '',
 		description: edit?.description || '',
 		date: edit?.date || '',
 		hour: edit?.hour || '',
 		isDiet: edit?.isDiet ?? true, // Aqui a dieta por padrão é "sim"
 	});
-  const [dietOk, setDietOk] = useState<string>(edit?.isDiet ? "1" : "2");
+	const [dietOk, setDietOk] = useState<string>(edit?.isDiet ? '1' : '2');
 	const { navigate } = useNavigation();
 
 	// Função para atualizar os dados do formulário
@@ -39,15 +35,47 @@ export function MealCreateEdit({}: IMealCreate) {
 		}));
 	};
 
-	const handleButtonOnFinish = () => {
-		console.log('formualrio ', form);
+	async function handleButtonOnFinish () {
 		//alterar pois tm que fazer algum calculo talvez
+		if(edit){
+			//pega pelo id na lista e edita e salva no storeage
+			await mealUpdate(form);
+		}else{
+			//salva na storage
+			const newMeal: IForm = {
+				...form,
+				id: Math.random().toString(36).substring(2, 9),
+			}
+			console.log(newMeal);
+			await mealCreate(newMeal);
+		}
 		navigate('feedback', { status: form.isDiet });
 	};
 
+	const formatCurrentDateAndTime = () => {
+		// Cria um objeto Date com a data/hora atual
+		const now = new Date(Date.now());
+	
+		// Formatar a data no estilo "dd.mm.yyyy"
+		const formattedDate = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()}`;
+	
+		// Formatar a hora no estilo "HHhMMm"
+		const formattedTime = `${String(now.getHours()).padStart(2, '0')}h${String(now.getMinutes()).padStart(2, '0')}m`;
+	
+		handleInputChange('date', formattedDate);
+		handleInputChange('hour', formattedTime);
+
+	};
+
+	useEffect(() => {
+		if(!edit) {
+			formatCurrentDateAndTime();
+		}
+	},[])
+
 	return (
 		<S.Conteiner>
-			<MealHeader statusMeal title="Nova refeição" />
+			<MealHeader statusMeal title={edit ? 'Editar refeição' : 'Nova refeição'} />
 			<S.Content>
 				{/* Passando handleInputChange para atualizar o 'name' */}
 				<Input
@@ -59,7 +87,6 @@ export function MealCreateEdit({}: IMealCreate) {
 				<Input
 					label="Descrição"
 					value={form.description}
-					numberOfLines={5}
 					onChangeText={(text) => handleInputChange('description', text)} // Atualiza 'description'
 				/>
 				<S.Row>
@@ -107,7 +134,7 @@ export function MealCreateEdit({}: IMealCreate) {
 				</S.Row>
 				<Button
 					type="PRIMARY"
-					title="Cadastrar refeição"
+					title={edit ? "Atualizar refeição" : "Cadastrar refeição"}
 					onPress={handleButtonOnFinish}
 				/>
 			</S.Content>

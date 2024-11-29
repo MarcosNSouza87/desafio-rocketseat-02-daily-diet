@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 interface IMealHeader {
 	title: string;
-	statusMeal: boolean;
+	statusMeal: boolean; //create/view/edit
 }
 
 export function MealHeader({statusMeal, title}: IMealHeader) {

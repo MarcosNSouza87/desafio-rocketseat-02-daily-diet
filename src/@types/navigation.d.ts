@@ -1,3 +1,4 @@
+import { IStatistic } from "@screens/Statistic";
 import { IForm } from "./form";
 
 export declare global {
@@ -5,7 +6,7 @@ export declare global {
 		interface RootParamList {
 			home: undefined;
 			statistic: {
-				statusDiet: number;
+				statisticDiet: IStatistic;
 			};
 			mealShow: {edit: IForm};
       mealCreate: undefined;
