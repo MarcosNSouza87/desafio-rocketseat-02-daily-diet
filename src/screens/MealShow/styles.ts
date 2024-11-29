@@ -37,6 +37,7 @@ export const ButtonIcon = styled(TouchableOpacity)`
 	align-items: center;
 	justify-content: center;
 `;
+
 export const Content = styled.View`
 	border-radius: ${({ theme }) => theme.BORDERRADIUS * 4}px;
 	background-color: ${({ theme }) => theme.COLORS.GRAY_7};
@@ -80,6 +81,28 @@ export const ContentModal = styled.View`
 	border-radius: 8px;
 	background-color: ${({ theme }) => theme.COLORS.GRAY_7};
 	padding: 12px 24px;
+`;
+
+export const ContentIsDiet = styled.View`
+	background-color: ${({ theme }) => theme.COLORS.GRAY_6};
+	border-radius: 19px;
+	width: 150px;
+	padding: 8px;
+	align-items: center;
+	flex-direction: row;
+`;
+export const ContentStatusIsDiet = styled.View<IContainer>`
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	background-color: ${({ theme, status }) =>
+		status ? theme.COLORS.GREEN.DARK : theme.COLORS.RED.DARK};
+	margin-right: 12px;
+	margin-left: 8px;
+`;
+
+export const TitleIsDiet = styled(ContentSubTitle)`
+	font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
 `;
 
 export const ModalText = styled(ContentTitle)`

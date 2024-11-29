@@ -40,6 +40,12 @@ export function MealShow() {
 					<S.ContentInfoTitle>{description}</S.ContentInfoTitle>
 					<S.ContentSubTitle>Data e hora</S.ContentSubTitle>
 					<S.ContentInfoTitle>{`${date} às ${hour}`}</S.ContentInfoTitle>
+					<S.ContentIsDiet >
+						<S.ContentStatusIsDiet status={isDiet}></S.ContentStatusIsDiet>
+						<S.TitleIsDiet>
+							{`${isDiet ? 'dentro' : 'fora'} da dieta`}
+						</S.TitleIsDiet>
+					</S.ContentIsDiet>
 				</S.ContentInfo>
 				<Button
 					icon="PencilSimpleLine"
