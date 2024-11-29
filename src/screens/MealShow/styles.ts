@@ -90,6 +90,7 @@ export const ContentIsDiet = styled.View`
 	padding: 8px;
 	align-items: center;
 	flex-direction: row;
+	margin: 12px 0;
 `;
 export const ContentStatusIsDiet = styled.View<IContainer>`
 	width: 10px;
