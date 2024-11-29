@@ -2,7 +2,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
 import { ArrowLeft } from 'phosphor-react-native';
-import { TouchableOpacity } from 'react-native';
+import { Modal, TouchableOpacity } from 'react-native';
 
 type IContainer = {
 	status: boolean;
@@ -20,7 +20,6 @@ export const Header = styled.View<IContainer>`
 	flex-direction: row;
 	align-items: center;
 	border-radius: ${({ theme }) => theme.BORDERRADIUS}px;
-
 `;
 
 export const Title = styled.Text`
@@ -64,6 +63,33 @@ export const ContentSubTitle = styled(ContentTitle)`
 
 export const ContentInfo = styled.View`
 	height: 80%;
+`;
+
+export const ContainerModal = styled.View`
+	background-color: ${({ theme }) => theme.COLORS.GRAY_1}55;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+`;
+export const ContentModal = styled.View`
+	height: 200px;
+	border: 1px solid ${({ theme }) => theme.COLORS.GRAY_4};
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	background-color: ${({ theme }) => theme.COLORS.GRAY_7};
+	padding: 12px 24px;
+`;
+
+export const ModalText = styled(ContentTitle)`
+	text-align: center;
+	padding: 16px 24px;
+`;
+export const GroupModalButtons = styled.View`
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
 `;
 
 export const Icon = styled(ArrowLeft).attrs<IContainer>(({ theme, status }) => ({
